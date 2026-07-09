@@ -114,13 +114,25 @@
                             </div>
                         @endif
 
-                        <!-- Client User Info -->
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="text-end">
-                                <div class="fw-bold fs-6">{{ auth()->user()->name }}</div>
-                                <div class="text-muted small">Klien Perusahaan</div>
-                            </div>
-                            <i class="bi bi-person-workspace fs-3 text-secondary"></i>
+                        <!-- Client User Info Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-link text-decoration-none d-flex align-items-center gap-3 p-0 text-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="text-end d-none d-md-block">
+                                    <div class="fw-bold fs-6">{{ auth()->user()->name }}</div>
+                                    <div class="text-muted small">Klien Perusahaan</div>
+                                </div>
+                                <i class="bi bi-person-workspace fs-3 text-secondary"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow mt-2">
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger d-flex align-items-center gap-2">
+                                            <i class="bi bi-box-arrow-right"></i> Keluar (Logout)
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </header>

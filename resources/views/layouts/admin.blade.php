@@ -395,14 +395,26 @@
                 </button>
                 <span class="topbar-title">@yield('header_title', 'Admin Panel')</span>
             </div>
-            <div class="topbar-user">
-                <div class="user-info">
-                    <div class="user-name">{{ auth()->user()->name }}</div>
-                    <div class="user-role">Administrator</div>
-                </div>
-                <div class="topbar-avatar">
-                    <i class="bi bi-person-fill"></i>
-                </div>
+            <div class="topbar-user dropdown">
+                <button class="btn btn-link text-decoration-none d-flex align-items-center gap-2 p-0 text-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="user-info text-end d-none d-md-block" style="line-height: 1.2;">
+                        <div class="user-name" style="font-weight: 700; font-size: 13px; color: #1c1b1b;">{{ auth()->user()->name }}</div>
+                        <div class="user-role" style="font-size: 11px; color: var(--brand-red); font-weight: 600;">Administrator</div>
+                    </div>
+                    <div class="topbar-avatar" style="width: 38px; height: 38px; background: linear-gradient(135deg, var(--brand-red), var(--brand-red-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px;">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow mt-2">
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger d-flex align-items-center gap-2" style="font-size: 13px; font-weight: 500;">
+                                <i class="bi bi-box-arrow-right"></i> Keluar (Logout)
+                            </button>
+                        </form>
+                    </li>
+                </ul>
             </div>
         </header>
 

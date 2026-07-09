@@ -7,12 +7,18 @@
     <div class="card border-0 shadow-sm bg-white p-4" style="max-width: 600px;">
         <h5 class="font-head fw-bold mb-4 border-bottom pb-2">Form Data Layanan</h5>
         
-        <form action="{{ route('admin.services.store') }}" method="POST">
+        <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="mb-3">
                 <label class="form-label small fw-bold text-uppercase">Nama Layanan</label>
                 <input type="text" name="title" class="form-control rounded-0" placeholder="Contoh: Perencanaan Teknik & Struktur" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small fw-bold text-uppercase">Foto / Gambar (Opsional)</label>
+                <input type="file" name="image" class="form-control rounded-0" accept="image/*">
+                <small class="text-muted">Upload foto yang merepresentasikan layanan ini.</small>
             </div>
 
             <div class="mb-3">
