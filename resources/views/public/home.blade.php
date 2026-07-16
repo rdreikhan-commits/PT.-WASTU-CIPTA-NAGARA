@@ -29,7 +29,14 @@
         <div class="max-w-[1920px] mx-auto relative px-4">
             <div class="swiper projects-swiper relative z-10 px-margin-mobile md:px-margin-desktop">
                 <div class="swiper-wrapper">
-                    @forelse($projects as $proj)
+                    @php
+                        // Duplicate projects if there are too few to ensure smooth marquee looping
+                        $displayProjects = $projects;
+                        if ($projects->count() > 0 && $projects->count() < 8) {
+                            $displayProjects = $projects->concat($projects)->concat($projects);
+                        }
+                    @endphp
+                    @forelse($displayProjects as $proj)
                         @php
                             // Determine the layout offset based on loop index to exactly match the staggered design
                             $index = $loop->index % 4;
